@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useForm } from 'react-hook-form'
 import { searchHistoryAtom } from '@/store';
 import { useAtom } from 'jotai';
+import { addToHistory } from '@/lib/userData';
 
 export default function ArtworkById() {
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
@@ -23,7 +24,7 @@ export default function ArtworkById() {
         },
     });
 
-    function submitForm(data){
+    async function submitForm(data){
         var queryString = ``
         queryString = queryString + `${data.searchBy}=true`
         if(data.geoLocation){
@@ -36,7 +37,7 @@ export default function ArtworkById() {
         queryString = queryString + `&isHighlight=${data.isHighlight}`
         queryString = queryString + `&q=${data.q}`
         
-        setSearchHistory(current => [...current, queryString]);
+        setSearchHistory(await addToHistory(queryString))
         router.push(`/artwork?${queryString}`)
     }
 
