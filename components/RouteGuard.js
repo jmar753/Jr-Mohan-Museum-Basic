@@ -15,9 +15,7 @@ export default function RouteGuard(props) {
 
     async function updateAtoms(){
         setFavouritesList(await getFavourites());
-        console.log(favouritesList)
         setSearchHistory(await getHistory());
-        console.log(searchHistory)
     }
 
     useEffect(() => {
