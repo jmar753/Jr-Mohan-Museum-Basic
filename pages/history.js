@@ -11,7 +11,7 @@ import { removeFromHistory } from "@/lib/userData";
 export default function History(){
     const [searchHistory, setSearchHistory] = useAtom(searchHistoryAtom)
     const router = useRouter();
-    if(!favouritesList) return null;
+    if(!searchHistory) return null;
     let parsedHistory = [];
 
     searchHistory.forEach(h => {
